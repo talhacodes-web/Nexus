@@ -189,7 +189,7 @@ A consistent frontend theme is maintained using:
 Clone the repository:
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/talhacodes-web/Nexus
 ```
 
 Install dependencies:
@@ -215,10 +215,10 @@ http://localhost:5173
 # Deployment
 
 ### GitHub Repository
-`[Add GitHub Repo Link Here]`
+`https://github.com/talhacodes-web/Nexus`
 
 ### Vercel Deployment
-`[Add Vercel Link Here]`
+`https://nexus-gold-three-73.vercel.app`
 
 ---
 
