@@ -24,32 +24,32 @@ export const SettingsPage: React.FC = () => {
         <Card className="lg:col-span-1">
           <CardBody className="p-2">
             <nav className="space-y-1">
-              <button className="flex items-center w-full px-3 py-2 text-sm font-medium text-primary-700 bg-primary-50 rounded-md">
+              <button className="btn-menu btn-menu-active">
                 <User size={18} className="mr-3" />
                 Profile
               </button>
               
-              <button className="flex items-center w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+              <button className="btn-menu btn-menu-default">
                 <Lock size={18} className="mr-3" />
                 Security
               </button>
               
-              <button className="flex items-center w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+              <button className="btn-menu btn-menu-default">
                 <Bell size={18} className="mr-3" />
                 Notifications
               </button>
               
-              <button className="flex items-center w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+              <button className="btn-menu btn-menu-default">
                 <Globe size={18} className="mr-3" />
                 Language
               </button>
               
-              <button className="flex items-center w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+              <button className="btn-menu btn-menu-default">
                 <Palette size={18} className="mr-3" />
                 Appearance
               </button>
               
-              <button className="flex items-center w-full px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md">
+              <button className="btn-menu btn-menu-default">
                 <CreditCard size={18} className="mr-3" />
                 Billing
               </button>

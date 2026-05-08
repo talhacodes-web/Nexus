@@ -71,10 +71,10 @@ export const InvestorsPage: React.FC = () => {
                     <button
                       key={stage}
                       onClick={() => toggleStage(stage)}
-                      className={`block w-full text-left px-3 py-2 rounded-md text-sm ${
+                      className={`btn-menu ${
                         selectedStages.includes(stage)
-                          ? 'bg-primary-50 text-primary-700'
-                          : 'text-gray-700 hover:bg-gray-50'
+                          ? 'btn-menu-active'
+                          : 'btn-menu-default'
                       }`}
                     >
                       {stage}
@@ -102,15 +102,15 @@ export const InvestorsPage: React.FC = () => {
               <div>
                 <h3 className="text-sm font-medium text-gray-900 mb-2">Location</h3>
                 <div className="space-y-2">
-                  <button className="flex items-center w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-50">
+                  <button className="btn-menu btn-menu-default">
                     <MapPin size={16} className="mr-2" />
                     San Francisco, CA
                   </button>
-                  <button className="flex items-center w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-50">
+                  <button className="btn-menu btn-menu-default">
                     <MapPin size={16} className="mr-2" />
                     New York, NY
                   </button>
-                  <button className="flex items-center w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-50">
+                  <button className="btn-menu btn-menu-default">
                     <MapPin size={16} className="mr-2" />
                     Boston, MA
                   </button>

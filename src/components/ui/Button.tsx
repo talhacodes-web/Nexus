@@ -25,15 +25,15 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   // Base styles with improved transitions
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-250 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer active:scale-95';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold leading-none whitespace-nowrap align-middle rounded-lg transition-all duration-250 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer active:scale-95';
   
   // Size styles
   const sizeStyles = {
-    xs: 'text-xs px-2.5 py-1.5 gap-1',
-    sm: 'text-sm px-3 py-2 gap-1.5',
-    md: 'text-sm px-4 py-2.5 gap-2',
-    lg: 'text-base px-6 py-3 gap-2',
-    xl: 'text-lg px-8 py-3.5 gap-2.5',
+    xs: 'h-8 text-xs px-3 gap-1',
+    sm: 'h-9 text-sm px-3.5 gap-1.5',
+    md: 'h-10 text-sm px-4 gap-2',
+    lg: 'h-11 text-base px-5 gap-2',
+    xl: 'h-12 text-lg px-6 gap-2.5',
   };
   
   // Variant styles with improved hover and focus states
@@ -55,7 +55,9 @@ export const Button: React.FC<ButtonProps> = ({
   // Width
   const widthClass = fullWidth ? 'w-full' : '';
   
-  const combinedClassName = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${widthClass} ${disabledClass} ${className}`;
+  const appliedSizeStyles = variant === 'link' ? 'h-auto p-0 text-sm gap-1' : sizeStyles[size];
+
+  const combinedClassName = `${baseStyles} ${appliedSizeStyles} ${variantStyles[variant]} ${widthClass} ${disabledClass} ${className}`;
   
   return (
     <button

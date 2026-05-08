@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-lg text-secondary-700 hover:text-primary-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
+              className="btn-icon text-secondary-700 hover:text-primary-600 hover:bg-gray-100 focus:outline-none"
             >
               {isMenuOpen ? (
                 <X className="block h-6 w-6" />
@@ -182,7 +182,7 @@ export const Navbar: React.FC = () => {
                       handleLogout();
                       setIsMenuOpen(false);
                     }}
-                    className="flex w-full items-center px-3 py-2 text-base font-medium text-secondary-700 hover:text-error-600 hover:bg-error-50 rounded-lg transition-colors duration-200"
+                    className="btn-menu text-base text-secondary-700 hover:text-error-600 hover:bg-error-50"
                   >
                     <LogOut size={18} className="mr-3" />
                     Logout

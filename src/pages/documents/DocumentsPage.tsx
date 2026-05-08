@@ -77,16 +77,16 @@ export const DocumentsPage: React.FC = () => {
             <div className="pt-4 border-t border-gray-200">
               <h3 className="text-sm font-medium text-gray-900 mb-2">Quick Access</h3>
               <div className="space-y-2">
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md">
+                <button className="btn-menu btn-menu-default">
                   Recent Files
                 </button>
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md">
+                <button className="btn-menu btn-menu-default">
                   Shared with Me
                 </button>
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md">
+                <button className="btn-menu btn-menu-default">
                   Starred
                 </button>
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md">
+                <button className="btn-menu btn-menu-default">
                   Trash
                 </button>
               </div>

@@ -79,7 +79,7 @@ export const LoginPage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   type="button"
-                  className={`py-3 px-4 border-2 rounded-lg flex items-center justify-center transition-all duration-200 ${
+                  className={`h-10 px-4 border-2 rounded-lg inline-flex items-center justify-center text-sm font-semibold leading-none whitespace-nowrap transition-all duration-200 ${
                     role === 'entrepreneur'
                       ? 'border-primary-500 bg-primary-50 text-primary-700'
                       : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
@@ -92,7 +92,7 @@ export const LoginPage: React.FC = () => {
                 
                 <button
                   type="button"
-                  className={`py-3 px-4 border-2 rounded-lg flex items-center justify-center transition-all duration-200 ${
+                  className={`h-10 px-4 border-2 rounded-lg inline-flex items-center justify-center text-sm font-semibold leading-none whitespace-nowrap transition-all duration-200 ${
                     role === 'investor'
                       ? 'border-primary-500 bg-primary-50 text-primary-700'
                       : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
