@@ -60,10 +60,10 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
   };
   
   return (
-    <Card className="transition-all duration-300">
+    <Card className="transition-all duration-300 hover:shadow-lg">
       <CardBody className="flex flex-col">
-        <div className="flex justify-between items-start">
-          <div className="flex items-start">
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-start">
+          <div className="flex items-start min-w-0">
             <Avatar
               src={investor.avatarUrl}
               alt={investor.name}
@@ -72,15 +72,17 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
               className="mr-3"
             />
             
-            <div>
-              <h3 className="text-md font-semibold text-gray-900">{investor.name}</h3>
+            <div className="min-w-0">
+              <h3 className="text-md font-semibold text-gray-900 truncate">{investor.name}</h3>
               <p className="text-sm text-gray-500">
                 {formatDistanceToNow(new Date(request.createdAt), { addSuffix: true })}
               </p>
             </div>
           </div>
           
-          {getStatusBadge()}
+          <div className="self-start sm:self-auto">
+            {getStatusBadge()}
+          </div>
         </div>
         
         <div className="mt-4">
@@ -90,12 +92,13 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
       
       <CardFooter className="border-t border-gray-100 bg-gray-50">
         {request.status === 'pending' ? (
-          <div className="flex justify-between w-full">
-            <div className="space-x-2">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 w-full">
+            <div className="grid grid-cols-1 sm:flex gap-2 w-full sm:w-auto">
               <Button
                 variant="outline"
                 size="sm"
                 leftIcon={<X size={16} />}
+                className="w-full sm:w-auto"
                 onClick={handleReject}
               >
                 Decline
@@ -104,6 +107,7 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
                 variant="success"
                 size="sm"
                 leftIcon={<Check size={16} />}
+                className="w-full sm:w-auto"
                 onClick={handleAccept}
               >
                 Accept
@@ -114,17 +118,19 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
               variant="primary"
               size="sm"
               leftIcon={<MessageCircle size={16} />}
+              className="w-full sm:w-auto"
               onClick={handleMessage}
             >
               Message
             </Button>
           </div>
         ) : (
-          <div className="flex justify-between w-full">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 w-full">
             <Button
               variant="outline"
               size="sm"
               leftIcon={<MessageCircle size={16} />}
+              className="w-full sm:w-auto"
               onClick={handleMessage}
             >
               Message
@@ -133,6 +139,7 @@ export const CollaborationRequestCard: React.FC<CollaborationRequestCardProps> =
             <Button
               variant="primary"
               size="sm"
+              className="w-full sm:w-auto"
               onClick={handleViewProfile}
             >
               View Profile

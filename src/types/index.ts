@@ -79,3 +79,49 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
 }
+
+export type MeetingItemType = 'availability' | 'confirmed';
+export type MeetingRequestStatus = 'pending' | 'accepted' | 'declined';
+
+export interface AvailabilitySlot {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  description?: string;
+  ownerId: string;
+  ownerName: string;
+  ownerRole: UserRole;
+  type: 'availability';
+}
+
+export interface MeetingRequest {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  description?: string;
+  requesterId: string;
+  requesterName: string;
+  requesterRole: UserRole;
+  status: MeetingRequestStatus;
+  createdAt: string;
+}
+
+export interface ConfirmedMeeting {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  description?: string;
+  participantName: string;
+  participantRole: UserRole;
+  sourceRequestId: string | null;
+  type: 'confirmed';
+}
+
+export interface SchedulingStore {
+  availabilitySlots: AvailabilitySlot[];
+  meetingRequests: MeetingRequest[];
+  confirmedMeetings: ConfirmedMeeting[];
+}

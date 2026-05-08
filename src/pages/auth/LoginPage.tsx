@@ -63,7 +63,7 @@ export const LoginPage: React.FC = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white py-8 px-4 shadow-lg border border-gray-100 rounded-xl sm:px-10">
           {error && (
             <div className="mb-4 bg-error-50 border border-error-500 text-error-700 px-4 py-3 rounded-md flex items-start">
               <AlertCircle size={18} className="mr-2 mt-0.5" />
@@ -76,13 +76,13 @@ export const LoginPage: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 I am a
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
                   type="button"
-                  className={`py-3 px-4 border rounded-md flex items-center justify-center transition-colors ${
+                  className={`py-3 px-4 border-2 rounded-lg flex items-center justify-center transition-all duration-200 ${
                     role === 'entrepreneur'
                       ? 'border-primary-500 bg-primary-50 text-primary-700'
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                      : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                   onClick={() => setRole('entrepreneur')}
                 >
@@ -92,10 +92,10 @@ export const LoginPage: React.FC = () => {
                 
                 <button
                   type="button"
-                  className={`py-3 px-4 border rounded-md flex items-center justify-center transition-colors ${
+                  className={`py-3 px-4 border-2 rounded-lg flex items-center justify-center transition-all duration-200 ${
                     role === 'investor'
                       ? 'border-primary-500 bg-primary-50 text-primary-700'
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                      : 'border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                   onClick={() => setRole('investor')}
                 >
@@ -164,9 +164,10 @@ export const LoginPage: React.FC = () => {
               </div>
             </div>
             
-            <div className="mt-4 grid grid-cols-2 gap-3">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Button
                 variant="outline"
+                className="w-full"
                 onClick={() => fillDemoCredentials('entrepreneur')}
                 leftIcon={<Building2 size={16} />}
               >
@@ -175,6 +176,7 @@ export const LoginPage: React.FC = () => {
               
               <Button
                 variant="outline"
+                className="w-full"
                 onClick={() => fillDemoCredentials('investor')}
                 leftIcon={<CircleDollarSign size={16} />}
               >

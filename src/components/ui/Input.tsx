@@ -7,6 +7,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
   fullWidth?: boolean;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({
@@ -16,46 +17,59 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   startAdornment,
   endAdornment,
   fullWidth = false,
+  size = 'md',
   className = '',
   ...props
 }, ref) => {
   
   const widthClass = fullWidth ? 'w-full' : '';
-  const errorClass = error ? 'border-error-500 focus:border-error-500 focus:ring-error-500' : 'border-gray-300 focus:border-primary-500 focus:ring-primary-500';
   
-  const inputBaseClass = `block rounded-md shadow-sm focus:ring-2 focus:ring-opacity-50 sm:text-sm ${errorClass}`;
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2.5 text-base',
+    lg: 'px-4 py-3 text-lg',
+  };
+
+  const baseInputClass = `block w-full rounded-lg border-2 transition-all duration-200 focus:outline-none ${sizeClasses[size]}`;
+  
+  const errorClass = error 
+    ? 'border-error-500 focus:border-error-600 focus:ring-2 focus:ring-error-100 bg-error-50' 
+    : 'border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-100 hover:border-gray-300';
+  
   const adornmentClass = startAdornment ? 'pl-10' : '';
+  const endAdornmentClass = endAdornment ? 'pr-10' : '';
   
   return (
     <div className={`${widthClass} ${className}`}>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-secondary-900 mb-2">
           {label}
+          {props.required && <span className="text-error-500 ml-1">*</span>}
         </label>
       )}
       
       <div className="relative">
         {startAdornment && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-secondary-500">
             {startAdornment}
           </div>
         )}
         
         <input
           ref={ref}
-          className={`${inputBaseClass} ${adornmentClass} ${widthClass}`}
+          className={`${baseInputClass} ${errorClass} ${adornmentClass} ${endAdornmentClass}`}
           {...props}
         />
         
         {endAdornment && (
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-500">
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-secondary-500">
             {endAdornment}
           </div>
         )}
       </div>
       
       {(error || helperText) && (
-        <p className={`mt-1 text-sm ${error ? 'text-error-500' : 'text-gray-500'}`}>
+        <p className={`mt-1.5 text-sm font-medium ${error ? 'text-error-600' : 'text-secondary-500'}`}>
           {error || helperText}
         </p>
       )}

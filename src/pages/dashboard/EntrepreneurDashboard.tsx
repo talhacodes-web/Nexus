@@ -10,6 +10,7 @@ import { useAuth } from '../../context/AuthContext';
 import { CollaborationRequest } from '../../types';
 import { getRequestsForEntrepreneur } from '../../data/collaborationRequests';
 import { investors } from '../../data/users';
+import { getNextConfirmedMeeting, getUpcomingConfirmedCount } from '../../data/scheduling';
 
 export const EntrepreneurDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -35,26 +36,40 @@ export const EntrepreneurDashboard: React.FC = () => {
   if (!user) return null;
   
   const pendingRequests = collaborationRequests.filter(req => req.status === 'pending');
+  const upcomingConfirmedCount = getUpcomingConfirmedCount();
+  const nextConfirmedMeeting = getNextConfirmedMeeting();
   
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Welcome, {user.name}</h1>
           <p className="text-gray-600">Here's what's happening with your startup today</p>
         </div>
         
-        <Link to="/investors">
-          <Button
-            leftIcon={<PlusCircle size={18} />}
-          >
-            Find Investors
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <Link to="/scheduling" className="w-full sm:w-auto">
+            <Button
+              className="w-full sm:w-auto"
+              variant="outline"
+              leftIcon={<Calendar size={18} />}
+            >
+              Open Calendar
+            </Button>
+          </Link>
+          <Link to="/investors" className="w-full sm:w-auto">
+            <Button
+              className="w-full sm:w-auto"
+              leftIcon={<PlusCircle size={18} />}
+            >
+              Find Investors
+            </Button>
+          </Link>
+        </div>
       </div>
       
       {/* Summary cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <Card className="bg-primary-50 border border-primary-100">
           <CardBody>
             <div className="flex items-center">
@@ -93,7 +108,10 @@ export const EntrepreneurDashboard: React.FC = () => {
               </div>
               <div>
                 <p className="text-sm font-medium text-accent-700">Upcoming Meetings</p>
-                <h3 className="text-xl font-semibold text-accent-900">2</h3>
+                <h3 className="text-xl font-semibold text-accent-900">{upcomingConfirmedCount}</h3>
+                {nextConfirmedMeeting && (
+                  <p className="text-xs text-accent-700 mt-1">Next: {nextConfirmedMeeting.date}</p>
+                )}
               </div>
             </div>
           </CardBody>
@@ -118,7 +136,7 @@ export const EntrepreneurDashboard: React.FC = () => {
         {/* Collaboration requests */}
         <div className="lg:col-span-2 space-y-4">
           <Card>
-            <CardHeader className="flex justify-between items-center">
+            <CardHeader className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
               <h2 className="text-lg font-medium text-gray-900">Collaboration Requests</h2>
               <Badge variant="primary">{pendingRequests.length} pending</Badge>
             </CardHeader>
@@ -150,7 +168,7 @@ export const EntrepreneurDashboard: React.FC = () => {
         {/* Recommended investors */}
         <div className="space-y-4">
           <Card>
-            <CardHeader className="flex justify-between items-center">
+            <CardHeader className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
               <h2 className="text-lg font-medium text-gray-900">Recommended Investors</h2>
               <Link to="/investors" className="text-sm font-medium text-primary-600 hover:text-primary-500">
                 View all

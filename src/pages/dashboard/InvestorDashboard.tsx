@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, PieChart, Filter, Search, PlusCircle } from 'lucide-react';
+import { Users, PieChart, Filter, Search, PlusCircle, CalendarClock, CalendarCheck2 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Card, CardBody, CardHeader } from '../../components/ui/Card';
 import { Input } from '../../components/ui/Input';
@@ -10,6 +10,7 @@ import { useAuth } from '../../context/AuthContext';
 import { Entrepreneur } from '../../types';
 import { entrepreneurs } from '../../data/users';
 import { getRequestsFromInvestor } from '../../data/collaborationRequests';
+import { getNextConfirmedMeeting, getUpcomingConfirmedCount } from '../../data/scheduling';
 
 export const InvestorDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -40,6 +41,8 @@ export const InvestorDashboard: React.FC = () => {
   
   // Get unique industries for filter
   const industries = Array.from(new Set(entrepreneurs.map(e => e.industry)));
+  const upcomingConfirmedCount = getUpcomingConfirmedCount();
+  const nextConfirmedMeeting = getNextConfirmedMeeting();
   
   // Toggle industry selection
   const toggleIndustry = (industry: string) => {
@@ -58,13 +61,25 @@ export const InvestorDashboard: React.FC = () => {
           <p className="text-gray-600">Find and connect with promising entrepreneurs</p>
         </div>
         
-        <Link to="/entrepreneurs">
-          <Button
-            leftIcon={<PlusCircle size={18} />}
-          >
-            View All Startups
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <Link to="/scheduling" className="w-full sm:w-auto">
+            <Button
+              className="w-full sm:w-auto"
+              variant="outline"
+              leftIcon={<CalendarClock size={18} />}
+            >
+              Open Calendar
+            </Button>
+          </Link>
+          <Link to="/entrepreneurs" className="w-full sm:w-auto">
+            <Button
+              className="w-full sm:w-auto"
+              leftIcon={<PlusCircle size={18} />}
+            >
+              View All Startups
+            </Button>
+          </Link>
+        </div>
       </div>
       
       {/* Filters and search */}
@@ -80,9 +95,9 @@ export const InvestorDashboard: React.FC = () => {
         </div>
         
         <div className="w-full md:w-1/3">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-start sm:items-center gap-2">
             <Filter size={18} className="text-gray-500" />
-            <span className="text-sm font-medium text-gray-700">Filter by:</span>
+            <span className="text-sm font-medium text-gray-700 whitespace-nowrap">Filter by:</span>
             
             <div className="flex flex-wrap gap-2">
               {industries.map(industry => (
@@ -101,7 +116,7 @@ export const InvestorDashboard: React.FC = () => {
       </div>
       
       {/* Stats summary */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <Card className="bg-primary-50 border border-primary-100">
           <CardBody>
             <div className="flex items-center">
@@ -145,12 +160,29 @@ export const InvestorDashboard: React.FC = () => {
             </div>
           </CardBody>
         </Card>
+
+        <Card className="bg-success-50 border border-success-100">
+          <CardBody>
+            <div className="flex items-center">
+              <div className="p-3 bg-success-100 rounded-full mr-4">
+                <CalendarCheck2 size={20} className="text-success-700" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-success-700">Confirmed Meetings</p>
+                <h3 className="text-xl font-semibold text-success-900">{upcomingConfirmedCount}</h3>
+                {nextConfirmedMeeting && (
+                  <p className="text-xs text-success-700 mt-1">Next: {nextConfirmedMeeting.date}</p>
+                )}
+              </div>
+            </div>
+          </CardBody>
+        </Card>
       </div>
       
       {/* Entrepreneurs grid */}
       <div>
         <Card>
-          <CardHeader>
+          <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <h2 className="text-lg font-medium text-gray-900">Featured Startups</h2>
           </CardHeader>
           
